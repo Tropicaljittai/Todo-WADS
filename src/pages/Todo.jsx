@@ -1,83 +1,54 @@
 import "../App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { TodoForm } from "../components/TodoForm";
 import { TodoList } from "../components/TodoList";
 
-
 function Todo() {
   const [todos, setTodos] = useState([]);
-  const [list, setList] = useState(todos);
-  const [selectedFilter, setSelectedFilter] = useState('all');
+  const [list, setList] = useState([]);
+  const [selectedFilter, setSelectedFilter] = useState("all");
 
-  const noFilter = () => {
-    setList(todos);
-  };
+  useEffect(() => {
+    filterTodos(selectedFilter);
+  }, [todos, selectedFilter]);
 
-  const handleFilterDone = () => {
-    const filtered = todos.filter(todo => todo.completed == true);
-    setList(filtered);
-  };
-
-  const handleFilterUndone = () => {
-    const filtered = todos.filter(todo => todo.completed == false);
-    setList(filtered);
+  const filterTodos = (filter) => {
+    switch (filter) {
+      case "all":
+        setList(todos);
+        break;
+      case "completed":
+        setList(todos.filter((todo) => todo.completed === true));
+        break;
+      case "uncompleted":
+        setList(todos.filter((todo) => todo.completed === false));
+        break;
+      default:
+        setList(todos);
+    }
   };
 
   const handleFilterChange = (event) => {
-    const selectedValue = event.target.value;
-    setSelectedFilter(selectedValue);
-
-    if (selectedValue === 'all') {
-      noFilter()
-    } else if (selectedValue === 'completed') {
-      handleFilterDone()
-    } else if (selectedValue === 'uncompleted') {
-      handleFilterUndone()
-    }
-  };
-
-  const checkSelect = (selectedValue, id) => {
-    if (selectedValue === 'all') {
-      noFilter()
-    } else if (selectedValue === 'completed') {
-      handleFilterDone()
-    } else if (selectedValue === 'uncompleted') {
-      handleFilterUndone()
-    }
+    setSelectedFilter(event.target.value);
   };
 
   function addTodo(title) {
-    setTodos((currentTodos) => {
-      return [
-        ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false},
-      ];
-    });
-    checkSelect(selectedFilter);
+    setTodos((currentTodos) => [
+      ...currentTodos,
+      { id: crypto.randomUUID(), title, completed: false },
+    ]);
   }
 
   function toggleTodo(id, completed) {
-    setTodos((currentTodos) => {
-      return currentTodos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, completed };
-        }
-        return todo;
-      });
-    });
+    setTodos((currentTodos) =>
+      currentTodos.map((todo) =>
+        todo.id === id ? { ...todo, completed } : todo
+      )
+    );
   }
-
-  function toggle(id, completed) {
-    toggleTodo(id, completed);
-    checkSelect(selectedFilter);
-  }
-
 
   function deleteTodo(id) {
-    setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => todo.id !== id);
-    });
-    checkSelect(selectedFilter)
+    setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
   }
 
   function editTodo(id, newTitle) {
@@ -86,22 +57,34 @@ function Todo() {
         todo.id === id ? { ...todo, title: newTitle } : todo
       )
     );
-    checkSelect(selectedFilter)
   }
 
   return (
     <>
-      <TodoForm addTodo={addTodo} />
+      <div className="main">
+        <TodoForm addTodo={addTodo} />
       <div>
         <div className="select">
-          <select name="todos" className="filter-todo" value={selectedFilter} onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="completed">Completed</option>
-              <option value="uncompleted">Active</option>
+          <select
+            name="todos"
+            className="filter-todo"
+            value={selectedFilter}
+            onChange={handleFilterChange}
+          >
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="uncompleted">Active</option>
           </select>
         </div>
       </div>
-      <TodoList todos={list} toggleTodo={toggle} deleteTodo={deleteTodo} editTodo={editTodo}/>
+      <TodoList
+        todos={list}
+        toggleTodo={toggleTodo}
+        deleteTodo={deleteTodo}
+        editTodo={editTodo}
+      />
+      </div>
+      
     </>
   );
 }

@@ -7,7 +7,7 @@ export function TodoList({ todos, toggleTodo, deleteTodo, editTodo}) {
   
   return (
     
-    <div>
+    <div className="listContainer">
       <h1 className="header">Todo List</h1>
       <ul className="list">
         {todos.length === 0 && "No todos"}

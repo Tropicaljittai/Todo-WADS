@@ -7,9 +7,34 @@
   overflow: hidden;
   position: relative;
 }
+#item{
+  width: 370px;
+  margin-top: 20px;
+}
+.main{
+  font-size: 11px; 
+  width: 550px;
+  height: 750px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 10px;
+  background-color:  rgb(40, 40, 40);
+  text-align: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .filter-todo {
   padding: 0.75rem;
+}
+
+select{
+  color: black;
 }
 
 option {
@@ -19,14 +44,11 @@ option {
   padding: 0px 2px 1px;
   white-space: nowrap;
 }
-* {
-  font-family: Arial, Helvetica, sans-serif;
-  box-sizing: border-box;
-}
+
 
 body {
   background: #333;
-  color: hsl(200, 100%, 90%);
+  color: rgb(200, 200, 200);
   max-width: 400px;
   padding: 1rem;
   margin: 0 auto;
@@ -45,74 +67,87 @@ body {
 }
 
 .btn {
-  background: hsl(200, 100%, 50%, 0.1);
-  border: 1px solid hsl(200, 100%, 50%);
-  color: hsl(200, 100%, 50%);
+  background: rgb(15, 15, 15);
+  border: 1px solid rgb(30, 30, 30);
+  color: rgb(150, 150, 150);
   padding: 0.25em 0.5em;
   border-radius: 0.25em;
   cursor: pointer;
   outline: none;
+  margin-bottom: 20px;
 }
 
 .btn:hover,
 .btn:focus-visible {
-  background: hsl(200, 100%, 50%, 0.2);
-}
-
-.btn.btn-danger {
-  background: hsl(0, 100%, 40%, 0.1);
-  border: 1px solid hsl(0, 100%, 40%);
-  color: hsl(0, 100%, 40%);
-}
-
-.btn.btn-danger:hover,
-.btn.btn-danger:focus-visible {
-  background: hsl(0, 100%, 40%, 0.2);
+  background: rgb(60, 60, 60);
 }
 
 .new-item-form input {
   outline: none;
-  border: 1px solid hsl(200, 100%, 40%);
-  background: hsl(200, 100%, 30%);
+  border: 1px solid rgb(50, 50, 50);
+  background: rgb(95, 95, 95);
   border-radius: 0.25em;
   padding: 0.25em 0.5em;
-  color: hsl(200, 100%, 90%);
-}
-
-.input-edit {
-  outline: none;
-  border: 1px solid hsl(200, 100%, 40%);
-  background: hsl(200, 100%, 30%);
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
-  color: hsl(0, 100%, 90%);
+  color: rgb(230, 230, 230);
 }
 
 .new-item-form input:focus {
-  border: 1px solid hsl(200, 100%, 70%);
+  border: 1px solid rgb(150, 150, 150);
 }
 
 .header {
   font-size: 1.5rem;
-  margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
 .list {
   margin: 0;
   padding: 0;
-  margin-left: 1rem;
   list-style: none;
 }
 
+.item-todo{
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  background-color: rgb(70, 70, 70);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.input-edit {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 58px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  color: black;
+}
+
+
+.labelList{
+  margin-right: 10px;
+}
+
 .list li:has(input:checked) label {
-  color: hsl(200, 20%, 40%);
+  color: rgb(140, 140, 140);
 }
 
 .list {
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
+  max-height: 100%;
+  overflow: auto;
+}
+
+.listContainer{
+  height: 450px;
 }
 
 .list li {
@@ -128,8 +163,12 @@ body {
   align-items: center;
 }
 
+.btnred{
+  margin-right: 5px;
+}
+
 .list li:has(input:focus-visible) label {
-  outline: 1px solid hsl(200, 100%, 50%);
+  outline: 1px solid rgb(100, 100, 100);
 }
 
 /* .list li input {
@@ -153,9 +192,9 @@ body {
 .list li label::before {
   content: "";
   display: block;
-  width: 0.9rem;
-  height: 0.9rem;
-  background: hsl(200, 100%, 90%);
+  width: 32px;
+  height: 32px;
+  background: rgb(250, 250, 250);
   border-radius: 0.25em;
   display: flex;
   justify-content: center;
@@ -163,19 +202,19 @@ body {
 }
 
 .list li label:hover::before {
-  background: hsl(200, 100%, 80%);
+  background: rgb(150, 150, 150);
 }
 
 .list li:has(input:checked) label::before {
   content: "✔";
-  background: hsl(200, 100%, 40%);
-  color: hsl(200, 100%, 90%);
+  background: rgb(220, 220, 220);
+  color: rgb(20, 20, 20);
   font-size: 0.75rem;
   font-weight: bold;
 }
 
 .list li:has(input:checked) label:hover::before {
-  background: hsl(200, 100%, 30%);
+  background: rgb(150, 150, 150);
 }
 
 /* .btn-edit {
