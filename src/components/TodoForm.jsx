@@ -16,7 +16,7 @@ export function TodoForm({ addTodo }) {
     <div>
       <form className="new-item-form">
         <div className="form-row">
-          <label className ={"uppercase text-2xl"}htmlFor="item">ToDo List</label>
+          <label className ={"text-2xl"}htmlFor="item">Let's list down today's activities</label>
           <input
             type="text"
             id="item"
