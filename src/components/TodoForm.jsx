@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 export function TodoForm({ addTodo }) {
-  const [newItem, setNewItem] = useState(addTodo.isEditing ? addTodo.isEditing.value : "");
+  const [newItem, setNewItem] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -16,7 +16,7 @@ export function TodoForm({ addTodo }) {
     <div>
       <form className="new-item-form">
         <div className="form-row">
-          <label htmlFor="item">New item</label>
+          <label className ={"uppercase text-2xl"}htmlFor="item">New item</label>
           <input
             type="text"
             id="item"
@@ -28,7 +28,6 @@ export function TodoForm({ addTodo }) {
           Add
         </button>
       </form>
-
     </div>
   );
 }

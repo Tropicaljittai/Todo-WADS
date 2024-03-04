@@ -1,22 +1,25 @@
+import React from "react";
 import { TodoItem } from "./TodoItem";
+import { useState } from "react";
 
-export function TodoList({ todos, toggleTodo, deleteTodo, editTodo }) {
+
+export function TodoList({ todos, toggleTodo, deleteTodo, editTodo}) {
+  
   return (
+    
     <div>
-      <h1 className="header"> Todo List</h1>
+      <h1 className="header">Todo List</h1>
       <ul className="list">
         {todos.length === 0 && "No todos"}
-        {todos.map((todo, id) => {
-          return (
-            <TodoItem
-              {...todo}
-              key={todo.id}
-              toggleTodo={toggleTodo}
-              deleteTodo={deleteTodo}
-              editTodo={editTodo}
-            />
-          );
-        })}
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            {...todo}
+            toggleTodo={toggleTodo}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+          />
+        ))}
       </ul>
     </div>
   );
