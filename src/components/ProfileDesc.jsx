@@ -15,10 +15,9 @@ export function ProfileDesc({editProfile})
     const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(false);
     const [profile, setProfile] = useState([]);
-    const [photoURL, setPhotoURL] = useState("");
+    const [photoURL, setPhotoURL] = useState("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png");
 
-    console.log(photoURL);
-
+    
     function handleImageChange(e) {
       if (e.target.files[0]) {
         setPhoto(e.target.files[0])
@@ -26,12 +25,13 @@ export function ProfileDesc({editProfile})
     }
 
     function handleSubmit() {
-      upload(photo, currentUser, setLoading);
+      currentUser.photoURL = upload(photo, currentUser, setLoading);
+      setPhotoURL(currentUser.photoURL);
     }
 
     useEffect(() => {
-      if (currentUser?.photoURL){
-        setPhotoURL(currentUser.photoURL)
+      if (currentUser?.photoURL) {
+        setPhotoURL(currentUser.photoURL);
       }
     }, [currentUser])
 

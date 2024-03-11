@@ -19,6 +19,10 @@ const firebaseConfig = {
   measurementId: "G-9L9GZCPGDF"
 };
 
+function refreshPage() {
+  window.location.reload(false);
+}
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
@@ -35,11 +39,6 @@ export function useAuth(){
   return currentUser;
 }
 
-function refreshPage() {
-  window.location.reload(false);
-}
-
-// Storage
 export async function upload(file, currentUser, setLoading) {
   const fileRef = ref(storage, currentUser.uid + '.png');
 
