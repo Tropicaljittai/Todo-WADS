@@ -6,6 +6,19 @@ button{
   cursor: pointer;
 }
 
+.google{
+  cursor: pointer;
+  background-color: white;
+  width: 20px;
+  height: 100px;
+  padding: 3px;
+  border-radius: 50%;
+}
+
+.orSignIn{
+  margin-bottom: 10px;
+}
+
 .picturePage{
   justify-content: space-between;
   font-size: 15px; 

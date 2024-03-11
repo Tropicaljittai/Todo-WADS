@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  createUserWithEmailAndPassword
+  createUserWithEmailAndPassword,
+  signInWithPopup
 } from "firebase/auth";
-import { auth } from "../firebase.js";
+import { auth, provider } from "../firebase.js";
 import { useNavigate } from "react-router-dom";
 import "./welcome.css";
 import TodoSVG from '../assets/todo-svg.svg'
-
+import { FcGoogle } from "react-icons/fc";
 
 export default function Welcome() {
   const [email, setEmail] = useState("");
@@ -22,6 +23,17 @@ export default function Welcome() {
   });
 
   const navigate = useNavigate();
+  const [value,setValue] = useState('')
+  const handleClick =()=>{
+      signInWithPopup(auth,provider).then((data)=>{
+          setValue(data.user.email)
+          localStorage.setItem("email",data.user.email)
+      })
+  }
+
+  useEffect(()=>{
+      setValue(localStorage.getItem('email'))
+  })
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -30,7 +42,7 @@ export default function Welcome() {
       }
     });
   }, []);
-
+  
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -67,7 +79,7 @@ export default function Welcome() {
       })
       .catch((err) => alert(err.message));
   };
-
+  
   return (
     <div className="login-register-container">
       {isRegistering ? (
@@ -137,6 +149,9 @@ export default function Welcome() {
           >
             Create an account
           </button>
+          <br/>
+          <p className="orSignIn">or sign in with</p>
+          <FcGoogle className="google" onClick={handleClick}/>
         </>
       )}
     </div>
