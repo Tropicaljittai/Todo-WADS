@@ -2,6 +2,24 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+button{
+  cursor: pointer;
+}
+
+
+
+.profilePic{
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+  position: absolute; 
+  right: 0; 
+  top: 0;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+
+
 .select {
   margin: 0.5rem 0.5rem 1rem;
   overflow: hidden;
@@ -11,6 +29,55 @@
   width: 370px;
   margin-top: 20px;
 }
+
+.backButton{
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+.profileDesc{
+  justify-content: space-between;
+  font-size: 15px; 
+  width: 870px;
+  height: 350px;
+  display: flex;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 10px;
+  background-color:  rgb(40, 40, 40);
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.profileEditBtn{
+  margin-top: 20px;
+  float: right;
+  width: 80px;
+}
+
+.profileSaveBtn{
+  float: right;
+  width: 80px;
+}
+
+.profilePic-ProfilePage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+:disabled{
+  color: rgb(100, 100, 100);
+}
+
 .main{
   font-size: 11px; 
   width: 550px;
@@ -45,7 +112,15 @@ option {
   white-space: nowrap;
 }
 
-
+.saveEditCon{
+  margin-top: 20px;
+  width: 300px;
+}
+.editProfileClass
+{
+  font-size: 17px;
+  width: 300px;
+}
 body {
   background: #333;
   color: rgb(200, 200, 200);
@@ -65,7 +140,9 @@ body {
   flex-direction: column;
   gap: 0.1rem;
 }
-
+.logout-icon{
+  cursor: pointer;
+}
 .btn {
   background: rgb(15, 15, 15);
   border: 1px solid rgb(30, 30, 30);

@@ -1,4 +1,6 @@
 import { useState } from "react";
+import {db} from '../firebase';
+import {collection, addDoc, Timestamp} from 'firebase/firestore';
 
 export function TodoForm({ addTodo }) {
   const [newItem, setNewItem] = useState("");
