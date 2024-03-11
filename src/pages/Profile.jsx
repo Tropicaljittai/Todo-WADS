@@ -1,8 +1,6 @@
 import "../App.css";
 import { useState, useEffect } from "react";
 import {db, auth} from '../firebase';
-import { CiLogout } from "react-icons/ci";
-import { signOut, onAuthStateChanged } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import {collection, addDoc, Timestamp, query, onSnapshot, QuerySnapshot, updateDoc, doc, deleteDoc, setDoc, getDoc, where} from 'firebase/firestore';
 import { IoArrowBack } from "react-icons/io5";

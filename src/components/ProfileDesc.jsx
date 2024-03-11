@@ -11,31 +11,20 @@ export function ProfileDesc({editProfile})
   {
     const navigate = useNavigate();
     const currentUser = useAuth();
-    const [photo, setPhoto] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [editing, setEditing] = useState(false);
     const [profile, setProfile] = useState([]);
     const [photoURL, setPhotoURL] = useState("https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png");
-
-    
-    function handleImageChange(e) {
-      if (e.target.files[0]) {
-        setPhoto(e.target.files[0])
-      }
-    }
-
-    function handleSubmit() {
-      currentUser.photoURL = upload(photo, currentUser, setLoading);
-      setPhotoURL(currentUser.photoURL);
-    }
 
     useEffect(() => {
       if (currentUser?.photoURL) {
         setPhotoURL(currentUser.photoURL);
       }
     }, [currentUser])
+    function handleSubmit() {
+      navigate("/profilepic")
+    }
 
-    useEffect(() => {
+      useEffect(() => {
       const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
         if (user) {
           const docRef = doc(db, "users", user.uid);
@@ -107,8 +96,7 @@ export function ProfileDesc({editProfile})
           <CiLogout onClick={handleSignOut} className="logout-icon" color="red" size={40}/>
           <div className="profilePic-ProfilePage">
             <Avatar src={photoURL} sx={{ width: 150, height: 150 }} />
-            <input type="file" onChange={handleImageChange} />
-            <button className="bg-black hover:bg-slate-500 disabled:hover:bg-black py-2 px-2 rounded"disabled={loading || !photo} onClick={handleSubmit}>Submit</button>
+            <button className="bg-black hover:bg-slate-500 disabled:hover:bg-black py-2 px-2 rounded" onClick={handleSubmit}>Edit Profile Picture</button>
           </div>
           <div className="desciption-profile">
             <div className="item-todo">            

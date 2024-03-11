@@ -6,7 +6,23 @@ button{
   cursor: pointer;
 }
 
-
+.picturePage{
+  justify-content: space-between;
+  font-size: 15px; 
+  width: 370px;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 40px;
+  border-radius: 10px;
+  background-color:  rgb(40, 40, 40);
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .profilePic{
   width: 60px;
